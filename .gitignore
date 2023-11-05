@@ -115,3 +115,4 @@ Packages
 xcuserdata
 DerivedData/
 *.xcodeproj
+/.metadata/
