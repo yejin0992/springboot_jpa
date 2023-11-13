@@ -11,12 +11,13 @@ spring:
       ddl-auto: create  
 #    자동으로 tap을 만들어주는 모드
     properties:
-     hebernate:
+     hibernate:
 #      show_sql : true
       format_sql : true
       
 logging:
   level:
     org.hibernate.SQL : debug
+    org.hibernate.type : trace
     
 
