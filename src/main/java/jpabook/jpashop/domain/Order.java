@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -30,14 +32,15 @@ public class Order {
 	@JoinColumn(name = "member_id")
 	private Member member;
 	
-	@OneToMany(mappedBy = "order_id")
+	@OneToMany(mappedBy = "order")
 	private List<OrderItem> orderItems = new ArrayList<>();
 	
 	@OneToOne // 일대일관계에서 fk는 접근이 많은 order에 넣는다
 	@JoinColumn(name="delivery_id")
 	private Delivery delivery;
 	
-	private LocalDateTime oderDate; // 주문시간
+	private LocalDateTime orderDate; // 주문시간
 	
+	@Enumerated(EnumType.STRING)
 	private OrderStatus status; // 주문상태 order, cancle
 }
