@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.boot.SpringApplication;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -49,8 +51,21 @@ public class Order {
 	// 연관관계 편의 메서드 // 생성하는쪽과 양방향 연관관계는 편의 메서드가 있으면 좋음
 	public void setMember(Member member) {
 		this.member = member;
-		member.getOrders().add(this);
+		member.getOrders().add(this); // List<Order>에 order를 넣어둠
+		
+		// order 클래스의 member update
+		// member 클래스의 orders List에 order "추가"
 	}
+	
+//	원래의 로직이라면
+//	public static void main(String[] args) throws Exception {
+//		Member member = new Member();
+//		Order order = new Order();
+//	
+//		member.getOrders().add(order);
+//		order.setMember(member);
+//	}
+
 	
 	public void addOrderItem(OrderItem orderItem) {
 		orderItems.add(orderItem);
