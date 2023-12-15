@@ -27,7 +27,7 @@ public class MemberserviceTest {
 	@Autowired EntityManager em;
 	
 	@Test
-	@Rollback(false) // rollback 하지않고 commit함
+	@Rollback(false) // rollback 하지않고 commit함 , console에 insert query 출력
 	public void 회원가입() throws Exception {
 		// given (이런게 주어졌을때)
 		Member member = new Member();
@@ -37,7 +37,7 @@ public class MemberserviceTest {
 		Long saveId = memberService.join(member);
 		
 		// then (이렇게 된다. 검증해라)
-		em.flush();
+		em.flush(); // 영속성 컨텍스트에 member가 들어간다음 flush하면 db에 반영
 		assertEquals(member, memberRepository.findOne(saveId));
 	}
 	
@@ -51,7 +51,7 @@ public class MemberserviceTest {
 		
 		// when
 		memberService.join(member1);
-			memberService.join(member2); // 예외가 발생해야 한다
+		memberService.join(member2); // 예외가 발생해야 한다
 		// then
 		fail("예외가 발생해야 한다.");
 	}
